@@ -32,10 +32,9 @@ jobs:
       - name: Build the package
         run: pnpm run build
 
-
-      - name: Prepare .npmrc
+      - name: Publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
-
-      - name: Publish to npm
-        run: pnpm publish --no-git-checks
+          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          pnpm publish --no-git-checks --access public
