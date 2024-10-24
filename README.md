@@ -1,6 +1,6 @@
-# @gads-citron/mongo-db-check
+# mongo-sanity
 
-`@gads-citron/mongo-db-check` is a library designed to validate MongoDB documents against a predefined schema. It ensures that the documents stored in your MongoDB collections adhere to the specified structure and constraints.
+`mongo-sanity` is a library designed to validate MongoDB documents against a predefined schema. It ensures that the documents stored in your MongoDB collections adhere to the specified structure and constraints.
 
 ## Features
 
@@ -14,14 +14,14 @@
 To install the library, use npm or yarn:
 
 ```sh
-npm install @gads-citron/mongo-db-check
+npm install mongo-sanity
 ```
 
 ## Usage
 
 ```typescript
 import mongoose from 'mongoose';
-import { connectToDatabaseAndValidateData } from '@gads-citron/mongo-db-check';
+import { connectToDatabaseAndValidateData } from 'mongo-sanity';
 
 // Model initialization
 
