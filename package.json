@@ -1,0 +1,40 @@
+{
+  "name": "@gads-citron/mongo-db-check",
+  "version": "1.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "format": "prettier -l src/**/*.ts --write",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "check:types": "tsc --project .",
+    "check:format": "prettier --check .",
+    "check:lint": "eslint --max-warnings 0 .",
+    "check:all": "yarn check:format && yarn check:lint && yarn check:types",
+    "test:ci": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "cli-progress": "^3.12.0",
+    "lodash": "^4.17.21",
+    "typescript": "^5.5.4"
+  },
+  "peerDependencies": {
+    "mongoose": "8"
+  },
+  "devDependencies": {
+    "@types/cli-progress": "^3.11.6",
+    "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.17.7",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^22.5.1",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5"
+  }
+}
