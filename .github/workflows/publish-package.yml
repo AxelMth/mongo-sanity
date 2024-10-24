@@ -1,40 +1,20 @@
-name: Publish Package
-
+name: Publish Package to npmjs
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-
+  release:
+    types: [published]
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      id-token: write
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          registry-url: https://npm.pkg.github.com/
-
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Run tests
-        run: pnpm test
-
-      - name: Build the package
-        run: pnpm run build
-
-      - name: Publish
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm publish --provenance --access public
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-          pnpm publish --no-git-checks --access public
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
