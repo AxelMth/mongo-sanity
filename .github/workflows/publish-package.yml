@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          registry-url: 'https://registry.npmjs.org/'
+          registry-url: https://npm.pkg.github.com/
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -35,4 +35,4 @@ jobs:
       - name: Publish to npm
         run: |
           pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          pnpm publish
+          pnpm publish --no-git-checks
